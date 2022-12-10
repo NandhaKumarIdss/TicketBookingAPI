@@ -24,11 +24,11 @@ namespace TicketBookingAPI
         {
             services.AddControllers();
 
-            services.AddDbContext<TicketBookingDbContext>(options =>
-            {
-                options.UseNpgsql(Configuration.GetConnectionString("DefaultConnection"));
-            });
-
+            //services.AddDbContext<TicketBookingDbContext>(options =>
+            //{
+            //    options.UseNpgsql(Configuration.GetConnectionString("DefaultConnection"));
+            //});
+            services.AddDbContext<TicketBookingDbContext>(option => option.UseNpgsql(Configuration["ConnectionStrings:DefaultConnection"]));
             services.AddSwaggerGen();
 
             services.AddCors(options =>
