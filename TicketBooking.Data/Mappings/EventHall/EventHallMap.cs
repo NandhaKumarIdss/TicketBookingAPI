@@ -20,7 +20,7 @@ namespace TicketBooking.Data.Mappings.EventHall
 
             builder
               .Property(o => o.HallStatus)
-              .IsRequired(false);
+              .IsRequired();
 
 
             //relationships

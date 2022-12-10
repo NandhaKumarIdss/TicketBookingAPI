@@ -1,10 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Design;
 using Microsoft.Extensions.Configuration;
-using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Text;
 
 namespace TicketBooking.Data.TicketBookingDbContext
 {
@@ -18,7 +15,7 @@ namespace TicketBooking.Data.TicketBookingDbContext
                 .Build();
             var builder = new DbContextOptionsBuilder<TicketBookingDbContext>();
             var connectionString = configuration.GetConnectionString("DefaultConnection");
-            builder.UseSqlServer(connectionString);
+            builder.UseNpgsql(connectionString);
             return new TicketBookingDbContext(builder.Options);
         }
     }

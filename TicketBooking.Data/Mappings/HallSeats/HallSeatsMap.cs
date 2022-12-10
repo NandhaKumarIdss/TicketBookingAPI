@@ -30,7 +30,7 @@ namespace TicketBooking.Data.Mappings.HallSeats
 
             builder
             .Property(o => o.SeatStatus)
-            .IsRequired(false);
+            .IsRequired();
 
             //relationships
             builder.HasMany(o => o.BookingDetails)

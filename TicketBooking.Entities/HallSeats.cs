@@ -16,7 +16,7 @@ namespace TicketBooking.Entities
         public string SeatRow { get; set; }
         public string SeatColumn { get; set; }
         public bool SeatStatus { get; set; }
-        public Guid HallId { get; set; }
+        public Guid? HallId { get; set; }
 
         public virtual EventHall EventHall { get; set; }
         public virtual ICollection<BookingDetail> BookingDetails { get; set; }

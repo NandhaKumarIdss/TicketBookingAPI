@@ -13,7 +13,7 @@ namespace TicketBooking.Entities
         public Guid BookingId { get; set; }
         public string CustomerName { get; set; }
         public int NumberOfSeats { get; set; }
-        public Guid HallId { get; set; }
+        public Guid? HallId { get; set; }
 
         public virtual EventHall EventHall { get; set; }
         public virtual ICollection<BookingDetail> BookingDetails { get; set; }
