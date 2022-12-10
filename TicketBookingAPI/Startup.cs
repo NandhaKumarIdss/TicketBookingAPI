@@ -33,6 +33,7 @@ namespace TicketBookingAPI
 
             services.AddCors(options =>
             {
+
                 IEnumerable<KeyValuePair<string, string>> hosts = Configuration.GetSection("AllowedHosts").AsEnumerable();
                 string[] data = hosts.Where(o => o.Value != null).Select(o => o.Value).ToArray();
 

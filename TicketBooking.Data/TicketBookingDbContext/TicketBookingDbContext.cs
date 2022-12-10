@@ -5,16 +5,17 @@ namespace TicketBooking.Data.TicketBookingDbContext
 {
         public class TicketBookingDbContext : DbContext
         {
-            public TicketBookingDbContext(DbContextOptions options) : base(options)
+            public TicketBookingDbContext(DbContextOptions<TicketBookingDbContext> options) : base(options)
             {
 
             }
 
             protected override void OnModelCreating(ModelBuilder modelBuilder)
             {
-                base.OnModelCreating(modelBuilder);
-
+            modelBuilder.HasDefaultSchema("dbo");
                 modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
+                
+                base.OnModelCreating(modelBuilder);
             }
         }
 }
