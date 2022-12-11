@@ -9,9 +9,7 @@ namespace TicketBooking.Data.Mappings.EventHall
 
         public void Configure(EntityTypeBuilder<TicketBooking.Entities.EventHall> builder)
         {
-            builder
-                .Property(o => o.HallId)
-                .IsRequired();
+            builder.ToTable(nameof(TicketBooking.Entities.EventHall));
 
             builder
                .Property(o => o.HallName)

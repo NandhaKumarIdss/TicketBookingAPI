@@ -11,14 +11,15 @@ namespace TicketBooking.Entities
             BookingDetails = new HashSet<BookingDetail>();
         }
 
-        public Guid HallSeatId { get; set; }
+        public Guid Id { get; set; }
         public string SeatNumber { get; set; }
         public string SeatRow { get; set; }
         public string SeatColumn { get; set; }
         public bool SeatStatus { get; set; }
-        public Guid? HallId { get; set; }
 
+        public Guid? HallId { get; set; }
         public virtual EventHall EventHall { get; set; }
+
         public virtual ICollection<BookingDetail> BookingDetails { get; set; }
     }
 }

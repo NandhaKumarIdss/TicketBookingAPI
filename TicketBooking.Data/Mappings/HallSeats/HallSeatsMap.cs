@@ -8,13 +8,11 @@ namespace TicketBooking.Data.Mappings.HallSeats
 
         public void Configure(EntityTypeBuilder<TicketBooking.Entities.HallSeats> builder)
         {
+            builder.ToTable(nameof(TicketBooking.Entities.HallSeats));
+
             builder
                 .Property(o => o.HallId)
                 .IsRequired();
-
-            builder
-               .Property(o => o.HallSeatId)
-               .IsRequired();
 
             builder
               .Property(o => o.SeatColumn)

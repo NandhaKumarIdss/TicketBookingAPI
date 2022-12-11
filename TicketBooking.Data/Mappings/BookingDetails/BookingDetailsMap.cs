@@ -9,21 +9,22 @@ namespace TicketBooking.Data.Mappings.BookingDetails
 
         public void Configure(EntityTypeBuilder<TicketBooking.Entities.BookingDetail> builder)
         {
-
-            builder
-               .Property(o => o.BookingId)
-               .IsRequired();
+            builder.ToTable(nameof(TicketBooking.Entities.BookingDetail));
 
             builder
               .Property(o => o.BookingDetailId)
               .IsRequired();
 
             builder
+               .Property(o => o.BookingId)
+               .IsRequired();
+
+            builder
              .Property(o => o.SeatNumber)
              .IsRequired();
 
             builder
-             .Property(o => o.HallSeats)
+             .Property(o => o.HallSeatId)
              .IsRequired();
 
 

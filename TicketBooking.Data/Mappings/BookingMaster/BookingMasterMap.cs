@@ -9,12 +9,11 @@ namespace TicketBooking.Data.Mappings.BookingMaster
         public void Configure(EntityTypeBuilder<TicketBooking.Entities.BookingMaster> builder)
         {
 
-            builder
-               .Property(o => o.BookingId)
-               .IsRequired();
+            builder.ToTable(nameof(TicketBooking.Entities.BookingMaster));
 
             builder
                .Property(o => o.CustomerName)
+               .HasMaxLength(CustomerName)
                .IsRequired();
 
             builder
@@ -29,7 +28,7 @@ namespace TicketBooking.Data.Mappings.BookingMaster
 
             //relationships
             builder.HasMany(o => o.BookingDetails)
-                .WithOne(o => o.BookingMaster)
+                .WithOne(o => o.BookingMasters)
                 .HasForeignKey(o => o.BookingId)
                 .OnDelete(DeleteBehavior.Restrict);
 

@@ -11,7 +11,7 @@ namespace TicketBooking.Entities
             BookingMasters = new HashSet<BookingMaster>();
         }
 
-        public Guid HallId { get; set; }
+        public Guid Id { get; set; }
         public string HallName { get; set; }
         public bool HallStatus { get; set; }
 
