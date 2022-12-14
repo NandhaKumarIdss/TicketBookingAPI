@@ -4,6 +4,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.OpenApi.Models;
 using System.Collections.Generic;
 using System.Linq;
 using TicketBooking.Data.TicketBookingDbContext;
@@ -29,7 +30,11 @@ namespace TicketBookingAPI
             //    options.UseNpgsql(Configuration.GetConnectionString("DefaultConnection"));
             //});
             services.AddDbContext<TicketBookingDbContext>(option => option.UseNpgsql(Configuration["ConnectionStrings:DefaultConnection"]));
-            services.AddSwaggerGen();
+
+            services.AddSwaggerGen(c =>
+            {
+                c.SwaggerDoc("v1", new OpenApiInfo { Title = "Ticket Booking API V1", Version = "v1" });
+            });
 
             services.AddCors(options =>
             {
@@ -43,8 +48,9 @@ namespace TicketBookingAPI
                         builder
                             .AllowAnyMethod()
                             .AllowAnyHeader()
-                            .WithOrigins(data)
+                            .WithOrigins()
                             .AllowCredentials()
+                            .SetIsOriginAllowed(origin => true)
                             .WithExposedHeaders("Content-Disposition");
                     });
             });
