@@ -17,29 +17,29 @@ namespace TicketBooking.Repositories.GenericRepository
             _context = context;
         }
 
-        public virtual async Task<IEnumerable<TEntity>> GetAll()
+        public async Task<IEnumerable<TEntity>> GetAll()
         {
             return await _context.Set<TEntity>().ToListAsync();
         }
 
-        public virtual async Task<TEntity> GetById(Guid id)
+        public async Task<TEntity> GetById(Guid id)
         {
             return await _context.Set<TEntity>().FindAsync(id);
         }
 
-        public virtual async Task Create(TEntity entity)
+        public async Task Create(TEntity entity)
         {
             await _context.Set<TEntity>().AddAsync(entity);
             await _context.SaveChangesAsync();
         }
 
-        public virtual Task Update(TEntity entity)
+        public Task Update(TEntity entity)
         {
             _context.Entry(entity).State = EntityState.Modified;
             return _context.SaveChangesAsync();
         }
 
-        public virtual Task Delete(TEntity entity)
+        public Task Delete(TEntity entity)
         {
             _context.Set<TEntity>().Remove(entity);
             return _context.SaveChangesAsync();

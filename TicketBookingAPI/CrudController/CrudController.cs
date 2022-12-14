@@ -48,7 +48,7 @@ namespace TicketBooking.CrudController
             return Ok(entity);
         }
 
-        [HttpPut]
+        [HttpDelete]
         public virtual async Task<IActionResult> Delete(TEntity entity)
         {
             await _repository.Delete(entity);
