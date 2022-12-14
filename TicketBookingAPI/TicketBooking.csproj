@@ -16,11 +16,7 @@
   <ItemGroup>
     <ProjectReference Include="..\TicketBooking.Application\TicketBooking.Application.csproj" />
     <ProjectReference Include="..\TicketBooking.Data\TicketBooking.Data.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Controllers\BookingDetailController\" />
-    <Folder Include="Controllers\HallSeatsController\" />
+    <ProjectReference Include="..\TicketBooking.Repositories\TicketBooking.Repositories.csproj" />
   </ItemGroup>
 
 

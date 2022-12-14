@@ -1,15 +1,17 @@
-﻿using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using Microsoft.AspNetCore.Mvc;
+using TicketBooking.Application.EventHall.Model;
+using TicketBooking.CrudController;
+using TicketBooking.Entities;
+using TicketBooking.Repositories.GenericRepository;
 
 namespace TicketBookingAPI.Controllers.EventHallController
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class EventHallController : ControllerBase
+    public class EventHallController : CrudController<EventHall>
     {
+        public EventHallController(IRepository<EventHall> repository) : base(repository)
+        {
+        }
     }
 }
