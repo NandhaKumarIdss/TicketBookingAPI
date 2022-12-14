@@ -8,7 +8,7 @@ using TicketBooking.Data.TicketBookingDbContext;
 
 namespace TicketBooking.Data.Migrations
 {
-    [DbContext(typeof(TicketBookingDbContext))]
+    [DbContext(typeof(TicketBooking.Data.TicketBookingDbContext.TicketBookingDbContext))]
     partial class TicketBookingDbContextModelSnapshot : ModelSnapshot
     {
         protected override void BuildModel(ModelBuilder modelBuilder)

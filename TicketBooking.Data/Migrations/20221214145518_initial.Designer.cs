@@ -9,9 +9,9 @@ using TicketBooking.Data.TicketBookingDbContext;
 
 namespace TicketBooking.Data.Migrations
 {
-    [DbContext(typeof(TicketBookingDbContext))]
-    [Migration("20221214142803_Initial")]
-    partial class Initial
+    [DbContext(typeof(TicketBooking.Data.TicketBookingDbContext.TicketBookingDbContext))]
+    [Migration("20221214145518_initial")]
+    partial class initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
