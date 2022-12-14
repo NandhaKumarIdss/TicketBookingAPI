@@ -11,9 +11,6 @@ namespace TicketBooking.Data.Mappings.BookingDetails
         {
             builder.ToTable(nameof(TicketBooking.Entities.BookingDetail));
 
-            builder
-              .Property(o => o.BookingDetailId)
-              .IsRequired();
 
             builder
                .Property(o => o.BookingId)

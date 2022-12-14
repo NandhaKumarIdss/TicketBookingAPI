@@ -16,6 +16,8 @@ namespace TicketBooking.Data.Migrations
                 columns: table => new
                 {
                     Id = table.Column<Guid>(nullable: false),
+                    CreatedDate = table.Column<DateTime>(nullable: false),
+                    ModifiedDate = table.Column<DateTime>(nullable: true),
                     HallName = table.Column<string>(maxLength: 100, nullable: false),
                     HallStatus = table.Column<bool>(nullable: false)
                 },
@@ -30,6 +32,8 @@ namespace TicketBooking.Data.Migrations
                 columns: table => new
                 {
                     Id = table.Column<Guid>(nullable: false),
+                    CreatedDate = table.Column<DateTime>(nullable: false),
+                    ModifiedDate = table.Column<DateTime>(nullable: true),
                     CustomerName = table.Column<string>(maxLength: 100, nullable: false),
                     NumberOfSeats = table.Column<int>(nullable: false),
                     HallId = table.Column<Guid>(nullable: false)
@@ -52,6 +56,8 @@ namespace TicketBooking.Data.Migrations
                 columns: table => new
                 {
                     Id = table.Column<Guid>(nullable: false),
+                    CreatedDate = table.Column<DateTime>(nullable: false),
+                    ModifiedDate = table.Column<DateTime>(nullable: true),
                     SeatNumber = table.Column<string>(nullable: false),
                     SeatRow = table.Column<string>(nullable: false),
                     SeatColumn = table.Column<string>(nullable: false),
@@ -75,14 +81,16 @@ namespace TicketBooking.Data.Migrations
                 schema: "dbo",
                 columns: table => new
                 {
-                    BookingDetailId = table.Column<Guid>(nullable: false),
+                    Id = table.Column<Guid>(nullable: false),
+                    CreatedDate = table.Column<DateTime>(nullable: false),
+                    ModifiedDate = table.Column<DateTime>(nullable: true),
                     SeatNumber = table.Column<int>(nullable: false),
                     BookingId = table.Column<Guid>(nullable: false),
                     HallSeatId = table.Column<Guid>(nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_BookingDetail", x => x.BookingDetailId);
+                    table.PrimaryKey("PK_BookingDetail", x => x.Id);
                     table.ForeignKey(
                         name: "FK_BookingDetail_BookingMaster_BookingId",
                         column: x => x.BookingId,

@@ -1,9 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using TicketBooking.Entities.BaseEntity;
 
 namespace TicketBooking.Entities
 {
-    public class EventHall
+    public class EventHall: Entity
     {
         public EventHall()
         {
@@ -11,7 +12,6 @@ namespace TicketBooking.Entities
             BookingMasters = new HashSet<BookingMaster>();
         }
 
-        public Guid Id { get; set; }
         public string HallName { get; set; }
         public bool HallStatus { get; set; }
 

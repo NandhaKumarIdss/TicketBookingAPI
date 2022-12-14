@@ -5,11 +5,12 @@ using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
+using TicketBooking.Data.TicketBookingDbContext;
 
 namespace TicketBooking.Data.Migrations
 {
-    [DbContext(typeof(TicketBooking.Data.TicketBookingDbContext.TicketBookingDbContext))]
-    [Migration("20221211050218_Initial")]
+    [DbContext(typeof(TicketBookingDbContext))]
+    [Migration("20221214142803_Initial")]
     partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -23,7 +24,7 @@ namespace TicketBooking.Data.Migrations
 
             modelBuilder.Entity("TicketBooking.Entities.BookingDetail", b =>
                 {
-                    b.Property<Guid>("BookingDetailId")
+                    b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uuid");
 
@@ -31,14 +32,20 @@ namespace TicketBooking.Data.Migrations
                         .IsRequired()
                         .HasColumnType("uuid");
 
+                    b.Property<DateTime>("CreatedDate")
+                        .HasColumnType("timestamp without time zone");
+
                     b.Property<Guid?>("HallSeatId")
                         .IsRequired()
                         .HasColumnType("uuid");
 
+                    b.Property<DateTime?>("ModifiedDate")
+                        .HasColumnType("timestamp without time zone");
+
                     b.Property<int>("SeatNumber")
                         .HasColumnType("integer");
 
-                    b.HasKey("BookingDetailId");
+                    b.HasKey("Id");
 
                     b.HasIndex("BookingId");
 
@@ -53,6 +60,9 @@ namespace TicketBooking.Data.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uuid");
 
+                    b.Property<DateTime>("CreatedDate")
+                        .HasColumnType("timestamp without time zone");
+
                     b.Property<string>("CustomerName")
                         .IsRequired()
                         .HasColumnType("character varying(100)")
@@ -61,6 +71,9 @@ namespace TicketBooking.Data.Migrations
                     b.Property<Guid?>("HallId")
                         .IsRequired()
                         .HasColumnType("uuid");
+
+                    b.Property<DateTime?>("ModifiedDate")
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<int>("NumberOfSeats")
                         .HasColumnType("integer");
@@ -78,6 +91,9 @@ namespace TicketBooking.Data.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uuid");
 
+                    b.Property<DateTime>("CreatedDate")
+                        .HasColumnType("timestamp without time zone");
+
                     b.Property<string>("HallName")
                         .IsRequired()
                         .HasColumnType("character varying(100)")
@@ -85,6 +101,9 @@ namespace TicketBooking.Data.Migrations
 
                     b.Property<bool>("HallStatus")
                         .HasColumnType("boolean");
+
+                    b.Property<DateTime?>("ModifiedDate")
+                        .HasColumnType("timestamp without time zone");
 
                     b.HasKey("Id");
 
@@ -97,9 +116,15 @@ namespace TicketBooking.Data.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uuid");
 
+                    b.Property<DateTime>("CreatedDate")
+                        .HasColumnType("timestamp without time zone");
+
                     b.Property<Guid?>("HallId")
                         .IsRequired()
                         .HasColumnType("uuid");
+
+                    b.Property<DateTime?>("ModifiedDate")
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("SeatColumn")
                         .IsRequired()

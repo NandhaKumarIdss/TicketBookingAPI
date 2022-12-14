@@ -1,17 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
-
+using TicketBooking.Entities.BaseEntity;
 
 namespace TicketBooking.Entities
 {
-    public class HallSeats
+    public class HallSeats: Entity
     {
         public HallSeats()
         {
             BookingDetails = new HashSet<BookingDetail>();
         }
 
-        public Guid Id { get; set; }
         public string SeatNumber { get; set; }
         public string SeatRow { get; set; }
         public string SeatColumn { get; set; }
