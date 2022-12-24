@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using AutoMapper;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -10,11 +11,10 @@ namespace TicketBooking.CrudController
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class CrudController<TEntity> : ControllerBase where TEntity : Entity
+    public class CrudController<TEntity, TModel> : ControllerBase where TEntity : class
     {
-        private readonly IRepository<TEntity> _repository;
-
-        public CrudController(IRepository<TEntity> repository)
+        private readonly IRepository<TEntity, TModel> _repository;
+        public CrudController(IRepository<TEntity, TModel> repository)
         {
             _repository = repository;
         }
@@ -35,24 +35,24 @@ namespace TicketBooking.CrudController
         }
 
         [HttpPost]
-        public virtual async Task<IActionResult> Create(TEntity entity)
+        public virtual async Task<IActionResult> Create(TModel model)
         {
-            await _repository.Create(entity);
-            return Ok(entity);
+            await _repository.Create(model);
+            return Ok(model);
         }
 
         [HttpPut]
-        public virtual async Task<IActionResult> Update(TEntity entity)
+        public virtual async Task<IActionResult> Update(TModel model)
         {
-            await _repository.Update(entity);
-            return Ok(entity);
+            await _repository.Update(model);
+            return Ok(model);
         }
 
         [HttpDelete]
-        public virtual async Task<IActionResult> Delete(TEntity entity)
+        public virtual async Task<IActionResult> Delete(TModel model)
         {
-            await _repository.Delete(entity);
-            return Ok(entity);
+            await _repository.Delete(model);
+            return Ok(model);
         }
 
     }

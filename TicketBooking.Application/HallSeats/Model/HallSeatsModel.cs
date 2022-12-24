@@ -1,10 +1,10 @@
 ﻿using System;
+using TicketBooking.Entities.BaseEntity;
 
 namespace TicketBooking.Application.HallSeats.Model
 {
-    public class HallSeatsModel
+    public class HallSeatsModel : Entity
     {
-        public Guid Id { get; set; }
         public string SeatNumber { get; set; }
         public string SeatRow { get; set; }
         public string SeatColumn { get; set; }

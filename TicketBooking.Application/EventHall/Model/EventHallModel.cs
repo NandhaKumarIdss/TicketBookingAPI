@@ -1,12 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using TicketBooking.Entities.BaseEntity;
 
 namespace TicketBooking.Application.EventHall.Model
 {
-    public class EventHallModel
+    public class EventHallModel: Entity
     {
-        public Guid Id { get; set; }
         public string HallName { get; set; }
         public bool HallStatus { get; set; }
     }

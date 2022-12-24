@@ -1,46 +1,55 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using AutoMapper;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
-using System.Text;
 using System.Threading.Tasks;
 using TicketBooking.Data.TicketBookingDbContext;
 using TicketBooking.Entities.BaseEntity;
 
 namespace TicketBooking.Repositories.GenericRepository
 {
-    public class Repository<TEntity> : IRepository<TEntity> where TEntity : Entity
+    public class Repository<TEntity, TModel> : IRepository<TEntity, TModel> where TEntity : class
     {
-        protected TicketBookingDbContext _context;
-
-        public Repository(TicketBookingDbContext context)
+        protected readonly TicketBookingDbContext _context;
+        protected readonly IMapper _mapper;
+        protected readonly DbSet<TEntity> _entities;
+        public Repository(TicketBookingDbContext context, IMapper mapper)
         {
             _context = context;
+            _entities = _context.Set<TEntity>();
+            _mapper = mapper;
         }
 
-        public async Task<IEnumerable<TEntity>> GetAll()
+        public async Task<IEnumerable<TModel>> GetAll()
         {
-            return await _context.Set<TEntity>().ToListAsync();
+            var entities = await _entities.ToListAsync();
+            return _mapper.Map<IEnumerable<TModel>>(entities);
         }
 
-        public async Task<TEntity> GetById(Guid id)
+        public async Task<TModel> GetById(Guid id)
         {
-            return await _context.Set<TEntity>().FindAsync(id);
+            var entity = await _entities.FindAsync(id);
+            return _mapper.Map<TModel>(entity);
         }
 
-        public async Task Create(TEntity entity)
+        public async Task Create(TModel model)
         {
-            await _context.Set<TEntity>().AddAsync(entity);
+            var entity = _mapper.Map<TEntity>(model);
+            await _entities.AddAsync(entity);
             await _context.SaveChangesAsync();
         }
 
-        public Task Update(TEntity entity)
+        public Task Update(TModel model)
         {
+            var entity = _mapper.Map<TEntity>(model);
+            _entities.Attach(entity);
             _context.Entry(entity).State = EntityState.Modified;
             return _context.SaveChangesAsync();
         }
 
-        public Task Delete(TEntity entity)
+        public Task Delete(TModel model)
         {
+            var entity = _mapper.Map<TEntity>(model);
             _context.Set<TEntity>().Remove(entity);
             return _context.SaveChangesAsync();
         }

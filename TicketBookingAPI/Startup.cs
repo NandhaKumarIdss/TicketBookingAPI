@@ -1,3 +1,5 @@
+using FluentValidation;
+using FluentValidation.AspNetCore;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
@@ -7,7 +9,15 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
+using TicketBooking.Application.BookingDetail.Model;
+using TicketBooking.Application.BookingMaster.Model;
+using TicketBooking.Application.EventHall.Model;
+using TicketBooking.Application.HallSeats.Model;
+using TicketBooking.Application.Mapping;
+using TicketBooking.Data.Mappings.HallSeats;
 using TicketBooking.Data.TicketBookingDbContext;
+using TicketBooking.Repositories.GenericRepository;
 
 namespace TicketBookingAPI
 {
@@ -23,6 +33,23 @@ namespace TicketBookingAPI
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            //services.AddAutoMapper();
+
+            //var mappingConfig = new MapperConfiguration(mc =>
+            //{
+            //    mc.AddProfile(new MapProfile());
+            //});
+
+            //IMapper mapper = mappingConfig.CreateMapper();
+            //services.AddSingleton(mapper);
+            services.AddFluentValidationAutoValidation();
+            services.AddFluentValidationClientsideAdapters();
+            services.AddValidatorsFromAssemblyContaining<HallSeatsMap>();
+            services.AddAutoMapper(typeof(MapProfile));
+            //services.AddAutoMapper(typeof(HallSeatsModel));
+            //services.AddAutoMapper(typeof(BookingMasterModel));
+            //services.AddAutoMapper(typeof(BookingDetailModel));
+
             services.AddControllers();
 
             //services.AddDbContext<TicketBookingDbContext>(options =>
@@ -30,6 +57,8 @@ namespace TicketBookingAPI
             //    options.UseNpgsql(Configuration.GetConnectionString("DefaultConnection"));
             //});
             services.AddDbContext<TicketBookingDbContext>(option => option.UseNpgsql(Configuration["ConnectionStrings:DefaultConnection"]));
+
+            services.AddScoped(typeof(IRepository<,>), typeof(Repository<,>));
 
             services.AddSwaggerGen(c =>
             {
@@ -50,7 +79,7 @@ namespace TicketBookingAPI
                             .AllowAnyHeader()
                             .WithOrigins()
                             .AllowCredentials()
-                            .SetIsOriginAllowed(origin => true)
+                            .SetIsOriginAllowed(data => true)
                             .WithExposedHeaders("Content-Disposition");
                     });
             });

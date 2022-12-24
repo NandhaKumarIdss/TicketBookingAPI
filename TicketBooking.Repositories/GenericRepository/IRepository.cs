@@ -6,12 +6,12 @@ using TicketBooking.Entities.BaseEntity;
 
 namespace TicketBooking.Repositories.GenericRepository
 {
-    public interface IRepository<TEntity> where TEntity : Entity
+    public interface IRepository<TEntity, TModel> where TEntity : class
     {
-        Task<TEntity> GetById(Guid id);
-        Task Create(TEntity entity);
-        Task Update(TEntity entity);
-        Task Delete(TEntity entity);
-        Task<IEnumerable<TEntity>> GetAll();
+        Task<TModel> GetById(Guid id);
+        Task Create(TModel entity);
+        Task Update(TModel entity);
+        Task Delete(TModel entity);
+        Task<IEnumerable<TModel>> GetAll();
     }
 }

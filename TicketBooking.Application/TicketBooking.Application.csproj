@@ -1,24 +1,23 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>net6.0</TargetFramework>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="AutoMapper" Version="6.0.0" />
+    <PackageReference Include="AutoMapper" Version="12.0.0" />
     <PackageReference Include="FluentValidation" Version="11.4.0" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\TicketBooking.Data\TicketBooking.Data.csproj" />
     <ProjectReference Include="..\TicketBooking.Entities\TicketBooking.Entities.csproj" />
+    <ProjectReference Include="..\TicketBooking.Repositories\TicketBooking.Repositories.csproj" />
   </ItemGroup>
 
   <ItemGroup>
     <Folder Include="BookingDetail\Service\" />
     <Folder Include="BookingMaster\Service\" />
-    <Folder Include="EventHall\Service\" />
-    <Folder Include="HallSeats\Service\" />
   </ItemGroup>
 
 </Project>
