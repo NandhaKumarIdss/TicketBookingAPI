@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using TicketBooking.Application.BookingMaster.Model;
+using TicketBooking.Application.BookingMaster.Service;
 using TicketBooking.CrudController;
 using TicketBooking.Entities;
 using TicketBooking.Repositories.GenericRepository;
@@ -15,8 +16,10 @@ namespace TicketBookingAPI.Controllers.BookingMasterController
     [ApiController]
     public class BookingMasterController : CrudController<BookingMaster,BookingMasterModel>
     {
-        public BookingMasterController(IRepository<BookingMaster,BookingMasterModel> repository) : base(repository)
+        private readonly IBookingMasterService _service;
+        public BookingMasterController(IRepository<BookingMaster,BookingMasterModel> repository, IBookingMasterService service) : base(repository)
         {
+            _service = service;
         }
     }
 }

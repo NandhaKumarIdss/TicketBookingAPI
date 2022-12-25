@@ -1,9 +1,11 @@
 ﻿using System;
 using Microsoft.EntityFrameworkCore.Migrations;
 
+#nullable disable
+
 namespace TicketBooking.Data.Migrations
 {
-    public partial class initial : Migration
+    public partial class Initial : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -15,11 +17,11 @@ namespace TicketBooking.Data.Migrations
                 schema: "dbo",
                 columns: table => new
                 {
-                    Id = table.Column<Guid>(nullable: false),
-                    CreatedDate = table.Column<DateTime>(nullable: false),
-                    ModifiedDate = table.Column<DateTime>(nullable: true),
-                    HallName = table.Column<string>(maxLength: 100, nullable: false),
-                    HallStatus = table.Column<bool>(nullable: false)
+                    Id = table.Column<Guid>(type: "uuid", nullable: false),
+                    HallName = table.Column<string>(type: "character varying(100)", maxLength: 100, nullable: false),
+                    HallStatus = table.Column<bool>(type: "boolean", nullable: false),
+                    CreatedDate = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
+                    ModifiedDate = table.Column<DateTime>(type: "timestamp with time zone", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -31,12 +33,12 @@ namespace TicketBooking.Data.Migrations
                 schema: "dbo",
                 columns: table => new
                 {
-                    Id = table.Column<Guid>(nullable: false),
-                    CreatedDate = table.Column<DateTime>(nullable: false),
-                    ModifiedDate = table.Column<DateTime>(nullable: true),
-                    CustomerName = table.Column<string>(maxLength: 100, nullable: false),
-                    NumberOfSeats = table.Column<int>(nullable: false),
-                    HallId = table.Column<Guid>(nullable: false)
+                    Id = table.Column<Guid>(type: "uuid", nullable: false),
+                    CustomerName = table.Column<string>(type: "character varying(100)", maxLength: 100, nullable: false),
+                    NumberOfSeats = table.Column<int>(type: "integer", nullable: false),
+                    HallId = table.Column<Guid>(type: "uuid", nullable: false),
+                    CreatedDate = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
+                    ModifiedDate = table.Column<DateTime>(type: "timestamp with time zone", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -55,14 +57,14 @@ namespace TicketBooking.Data.Migrations
                 schema: "dbo",
                 columns: table => new
                 {
-                    Id = table.Column<Guid>(nullable: false),
-                    CreatedDate = table.Column<DateTime>(nullable: false),
-                    ModifiedDate = table.Column<DateTime>(nullable: true),
-                    SeatNumber = table.Column<string>(nullable: false),
-                    SeatRow = table.Column<string>(nullable: false),
-                    SeatColumn = table.Column<string>(nullable: false),
-                    SeatStatus = table.Column<bool>(nullable: false),
-                    HallId = table.Column<Guid>(nullable: false)
+                    Id = table.Column<Guid>(type: "uuid", nullable: false),
+                    SeatNumber = table.Column<string>(type: "text", nullable: false),
+                    SeatRow = table.Column<string>(type: "text", nullable: false),
+                    SeatColumn = table.Column<string>(type: "text", nullable: false),
+                    SeatStatus = table.Column<bool>(type: "boolean", nullable: false),
+                    HallId = table.Column<Guid>(type: "uuid", nullable: false),
+                    CreatedDate = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
+                    ModifiedDate = table.Column<DateTime>(type: "timestamp with time zone", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -81,12 +83,12 @@ namespace TicketBooking.Data.Migrations
                 schema: "dbo",
                 columns: table => new
                 {
-                    Id = table.Column<Guid>(nullable: false),
-                    CreatedDate = table.Column<DateTime>(nullable: false),
-                    ModifiedDate = table.Column<DateTime>(nullable: true),
-                    SeatNumber = table.Column<int>(nullable: false),
-                    BookingId = table.Column<Guid>(nullable: false),
-                    HallSeatId = table.Column<Guid>(nullable: false)
+                    Id = table.Column<Guid>(type: "uuid", nullable: false),
+                    SeatNumber = table.Column<int>(type: "integer", nullable: false),
+                    BookingId = table.Column<Guid>(type: "uuid", nullable: false),
+                    HallSeatId = table.Column<Guid>(type: "uuid", nullable: false),
+                    CreatedDate = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
+                    ModifiedDate = table.Column<DateTime>(type: "timestamp with time zone", nullable: true)
                 },
                 constraints: table =>
                 {

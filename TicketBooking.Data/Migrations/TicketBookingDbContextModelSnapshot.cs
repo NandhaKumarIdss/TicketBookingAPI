@@ -6,6 +6,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 using TicketBooking.Data.TicketBookingDbContext;
 
+#nullable disable
+
 namespace TicketBooking.Data.Migrations
 {
     [DbContext(typeof(TicketBooking.Data.TicketBookingDbContext.TicketBookingDbContext))]
@@ -16,9 +18,10 @@ namespace TicketBooking.Data.Migrations
 #pragma warning disable 612, 618
             modelBuilder
                 .HasDefaultSchema("dbo")
-                .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn)
-                .HasAnnotation("ProductVersion", "3.1.3")
+                .HasAnnotation("ProductVersion", "6.0.0")
                 .HasAnnotation("Relational:MaxIdentifierLength", 63);
+
+            NpgsqlModelBuilderExtensions.UseIdentityByDefaultColumns(modelBuilder);
 
             modelBuilder.Entity("TicketBooking.Entities.BookingDetail", b =>
                 {
@@ -31,14 +34,14 @@ namespace TicketBooking.Data.Migrations
                         .HasColumnType("uuid");
 
                     b.Property<DateTime>("CreatedDate")
-                        .HasColumnType("timestamp without time zone");
+                        .HasColumnType("timestamp with time zone");
 
                     b.Property<Guid?>("HallSeatId")
                         .IsRequired()
                         .HasColumnType("uuid");
 
                     b.Property<DateTime?>("ModifiedDate")
-                        .HasColumnType("timestamp without time zone");
+                        .HasColumnType("timestamp with time zone");
 
                     b.Property<int>("SeatNumber")
                         .HasColumnType("integer");
@@ -49,7 +52,7 @@ namespace TicketBooking.Data.Migrations
 
                     b.HasIndex("HallSeatId");
 
-                    b.ToTable("BookingDetail");
+                    b.ToTable("BookingDetail", "dbo");
                 });
 
             modelBuilder.Entity("TicketBooking.Entities.BookingMaster", b =>
@@ -59,19 +62,19 @@ namespace TicketBooking.Data.Migrations
                         .HasColumnType("uuid");
 
                     b.Property<DateTime>("CreatedDate")
-                        .HasColumnType("timestamp without time zone");
+                        .HasColumnType("timestamp with time zone");
 
                     b.Property<string>("CustomerName")
                         .IsRequired()
-                        .HasColumnType("character varying(100)")
-                        .HasMaxLength(100);
+                        .HasMaxLength(100)
+                        .HasColumnType("character varying(100)");
 
                     b.Property<Guid?>("HallId")
                         .IsRequired()
                         .HasColumnType("uuid");
 
                     b.Property<DateTime?>("ModifiedDate")
-                        .HasColumnType("timestamp without time zone");
+                        .HasColumnType("timestamp with time zone");
 
                     b.Property<int>("NumberOfSeats")
                         .HasColumnType("integer");
@@ -80,7 +83,7 @@ namespace TicketBooking.Data.Migrations
 
                     b.HasIndex("HallId");
 
-                    b.ToTable("BookingMaster");
+                    b.ToTable("BookingMaster", "dbo");
                 });
 
             modelBuilder.Entity("TicketBooking.Entities.EventHall", b =>
@@ -90,22 +93,22 @@ namespace TicketBooking.Data.Migrations
                         .HasColumnType("uuid");
 
                     b.Property<DateTime>("CreatedDate")
-                        .HasColumnType("timestamp without time zone");
+                        .HasColumnType("timestamp with time zone");
 
                     b.Property<string>("HallName")
                         .IsRequired()
-                        .HasColumnType("character varying(100)")
-                        .HasMaxLength(100);
+                        .HasMaxLength(100)
+                        .HasColumnType("character varying(100)");
 
                     b.Property<bool>("HallStatus")
                         .HasColumnType("boolean");
 
                     b.Property<DateTime?>("ModifiedDate")
-                        .HasColumnType("timestamp without time zone");
+                        .HasColumnType("timestamp with time zone");
 
                     b.HasKey("Id");
 
-                    b.ToTable("EventHall");
+                    b.ToTable("EventHall", "dbo");
                 });
 
             modelBuilder.Entity("TicketBooking.Entities.HallSeats", b =>
@@ -115,14 +118,14 @@ namespace TicketBooking.Data.Migrations
                         .HasColumnType("uuid");
 
                     b.Property<DateTime>("CreatedDate")
-                        .HasColumnType("timestamp without time zone");
+                        .HasColumnType("timestamp with time zone");
 
                     b.Property<Guid?>("HallId")
                         .IsRequired()
                         .HasColumnType("uuid");
 
                     b.Property<DateTime?>("ModifiedDate")
-                        .HasColumnType("timestamp without time zone");
+                        .HasColumnType("timestamp with time zone");
 
                     b.Property<string>("SeatColumn")
                         .IsRequired()
@@ -143,7 +146,7 @@ namespace TicketBooking.Data.Migrations
 
                     b.HasIndex("HallId");
 
-                    b.ToTable("HallSeats");
+                    b.ToTable("HallSeats", "dbo");
                 });
 
             modelBuilder.Entity("TicketBooking.Entities.BookingDetail", b =>
@@ -159,6 +162,10 @@ namespace TicketBooking.Data.Migrations
                         .HasForeignKey("HallSeatId")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
+
+                    b.Navigation("BookingMasters");
+
+                    b.Navigation("HallSeats");
                 });
 
             modelBuilder.Entity("TicketBooking.Entities.BookingMaster", b =>
@@ -168,6 +175,8 @@ namespace TicketBooking.Data.Migrations
                         .HasForeignKey("HallId")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
+
+                    b.Navigation("EventHall");
                 });
 
             modelBuilder.Entity("TicketBooking.Entities.HallSeats", b =>
@@ -177,6 +186,25 @@ namespace TicketBooking.Data.Migrations
                         .HasForeignKey("HallId")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
+
+                    b.Navigation("EventHall");
+                });
+
+            modelBuilder.Entity("TicketBooking.Entities.BookingMaster", b =>
+                {
+                    b.Navigation("BookingDetails");
+                });
+
+            modelBuilder.Entity("TicketBooking.Entities.EventHall", b =>
+                {
+                    b.Navigation("BookingMasters");
+
+                    b.Navigation("HallSeats");
+                });
+
+            modelBuilder.Entity("TicketBooking.Entities.HallSeats", b =>
+                {
+                    b.Navigation("BookingDetails");
                 });
 #pragma warning restore 612, 618
         }

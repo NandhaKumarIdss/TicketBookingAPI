@@ -10,6 +10,7 @@ namespace TicketBooking.Application.EventHall.Service
 {
     public interface IEventHallService 
     {
+        
     }
     public class EventHallService : IEventHallService
     {

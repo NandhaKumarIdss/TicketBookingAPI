@@ -11,9 +11,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using TicketBooking.Application.BookingDetail.Model;
+using TicketBooking.Application.BookingDetail.Service;
 using TicketBooking.Application.BookingMaster.Model;
+using TicketBooking.Application.BookingMaster.Service;
 using TicketBooking.Application.EventHall.Model;
+using TicketBooking.Application.EventHall.Service;
 using TicketBooking.Application.HallSeats.Model;
+using TicketBooking.Application.HallSeats.Service;
 using TicketBooking.Application.Mapping;
 using TicketBooking.Data.Mappings.HallSeats;
 using TicketBooking.Data.TicketBookingDbContext;
@@ -46,9 +50,10 @@ namespace TicketBookingAPI
             services.AddFluentValidationClientsideAdapters();
             services.AddValidatorsFromAssemblyContaining<HallSeatsMap>();
             services.AddAutoMapper(typeof(MapProfile));
-            //services.AddAutoMapper(typeof(HallSeatsModel));
-            //services.AddAutoMapper(typeof(BookingMasterModel));
-            //services.AddAutoMapper(typeof(BookingDetailModel));
+            services.AddScoped<IEventHallService, EventHallService>();
+            services.AddScoped<IHallSeatsService, HallSeatsService>();
+            services.AddScoped<IBookingMasterService, BookingMasterService>();
+            services.AddScoped<IBookingDetailService, BookingDetailService>();
 
             services.AddControllers();
 

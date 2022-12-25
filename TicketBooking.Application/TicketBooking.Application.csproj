@@ -16,7 +16,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="BookingDetail\Service\" />
     <Folder Include="BookingMaster\Service\" />
   </ItemGroup>
 

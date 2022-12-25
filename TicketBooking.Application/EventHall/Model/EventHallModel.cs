@@ -10,4 +10,6 @@ namespace TicketBooking.Application.EventHall.Model
         public string HallName { get; set; }
         public bool HallStatus { get; set; }
     }
+
+  
 }
