@@ -20,35 +20,36 @@ namespace TicketBooking.CrudController
         }
 
 
-        [HttpGet]
+        [HttpGet("GetAll")]
         public virtual async Task<IActionResult> GetAll()
         {
             var result = await _repository.GetAll();
             return Ok(result);
         }
 
-        [HttpGet("{id}")]
+        [HttpGet("GetById{id}")]
+        [ActionName("GetById")]
         public virtual async Task<IActionResult> GetById(Guid id)
         {
             var result = await _repository.GetById(id);
             return Ok(result);
         }
 
-        [HttpPost]
+        [HttpPost("Create")]
         public virtual async Task<IActionResult> Create(TModel model)
         {
-            await _repository.Create(model);
-            return Ok(model);
+            var result = await _repository.Create(model);
+            return Ok(result); ;
         }
 
-        [HttpPut]
+        [HttpPut("Update")]
         public virtual async Task<IActionResult> Update(TModel model)
         {
             await _repository.Update(model);
             return Ok(model);
         }
 
-        [HttpDelete]
+        [HttpDelete("Delete")]
         public virtual async Task<IActionResult> Delete(TModel model)
         {
             await _repository.Delete(model);

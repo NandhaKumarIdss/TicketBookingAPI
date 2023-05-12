@@ -9,7 +9,7 @@ namespace TicketBooking.Repositories.GenericRepository
     public interface IRepository<TEntity, TModel> where TEntity : class
     {
         Task<TModel> GetById(Guid id);
-        Task Create(TModel entity);
+        Task<TEntity> Create(TModel entity);
         Task Update(TModel entity);
         Task Delete(TModel entity);
         Task<IEnumerable<TModel>> GetAll();

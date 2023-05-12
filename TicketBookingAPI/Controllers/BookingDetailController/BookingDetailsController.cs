@@ -1,5 +1,4 @@
-﻿using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using TicketBooking.Application.BookingDetail.Model;
 using TicketBooking.Application.BookingDetail.Service;
 using TicketBooking.CrudController;

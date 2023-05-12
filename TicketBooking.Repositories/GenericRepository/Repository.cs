@@ -32,11 +32,12 @@ namespace TicketBooking.Repositories.GenericRepository
             return _mapper.Map<TModel>(entity);
         }
 
-        public async Task Create(TModel model)
+        public async Task<TEntity> Create(TModel model)
         {
             var entity = _mapper.Map<TEntity>(model);
             await _entities.AddAsync(entity);
             await _context.SaveChangesAsync();
+            return entity;
         }
 
         public Task Update(TModel model)
