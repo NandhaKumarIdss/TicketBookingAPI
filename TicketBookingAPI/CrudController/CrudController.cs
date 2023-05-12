@@ -28,7 +28,6 @@ namespace TicketBooking.CrudController
         }
 
         [HttpGet("GetById{id}")]
-        [ActionName("GetById")]
         public virtual async Task<IActionResult> GetById(Guid id)
         {
             var result = await _repository.GetById(id);
