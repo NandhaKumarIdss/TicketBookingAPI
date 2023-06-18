@@ -5,7 +5,7 @@ using TicketBooking.Entities.BaseEntity;
 
 namespace TicketBooking.Application.EventHall.Model
 {
-    public class EventHallModel: Entity
+    public class EventHallModel : Entity
     {
         public string HallName { get; set; }
         public bool HallStatus { get; set; }

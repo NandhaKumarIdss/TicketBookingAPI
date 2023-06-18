@@ -8,7 +8,7 @@ using TicketBooking.Entities.BaseEntity;
 
 namespace TicketBooking.Repositories.GenericRepository
 {
-    public class Repository<TEntity, TModel> : IRepository<TEntity, TModel> where TEntity : class
+    public class Repository<TEntity, TModel> : IRepository<TEntity, TModel> where TEntity : class where TModel : class
     {
         protected readonly TicketBookingDbContext _context;
         protected readonly IMapper _mapper;

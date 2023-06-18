@@ -11,7 +11,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TicketBooking", "TicketBook
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TicketBooking.Entities", "TicketBooking.Entities\TicketBooking.Entities.csproj", "{9A08DD24-8931-4EB8-9EC5-D274EEAFDED7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TicketBooking.Repositories", "TicketBooking.Repositories\TicketBooking.Repositories.csproj", "{2CC837D5-5DE0-47D9-99B4-1D794899FF55}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TicketBooking.Repositories", "TicketBooking.Repositories\TicketBooking.Repositories.csproj", "{2CC837D5-5DE0-47D9-99B4-1D794899FF55}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

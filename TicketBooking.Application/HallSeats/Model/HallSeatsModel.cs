@@ -10,6 +10,5 @@ namespace TicketBooking.Application.HallSeats.Model
         public string SeatColumn { get; set; }
         public bool SeatStatus { get; set; }
         public Guid? HallId { get; set; }
-
     }
 }

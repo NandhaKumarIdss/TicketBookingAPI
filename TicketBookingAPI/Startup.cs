@@ -11,6 +11,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
+using TicketBooking;
+using TicketBooking.Application.Auth;
 using TicketBooking.Application.BookingDetail.Model;
 using TicketBooking.Application.BookingDetail.Service;
 using TicketBooking.Application.BookingMaster.Model;
@@ -20,6 +22,7 @@ using TicketBooking.Application.EventHall.Service;
 using TicketBooking.Application.HallSeats.Model;
 using TicketBooking.Application.HallSeats.Service;
 using TicketBooking.Application.Mapping;
+using TicketBooking.Application.Users.Service;
 using TicketBooking.Data.Mappings.HallSeats;
 using TicketBooking.Data.TicketBookingDbContext;
 using TicketBooking.Repositories.GenericRepository;
@@ -37,15 +40,17 @@ namespace TicketBookingAPI
 
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
-        { 
+        {
             services.AddFluentValidationAutoValidation();
             services.AddFluentValidationClientsideAdapters();
             services.AddValidatorsFromAssemblyContaining<HallSeatsMap>();
             services.AddAutoMapper(typeof(MapProfile));
+            services.AddScoped<IUserService, UserService>();
             services.AddScoped<IEventHallService, EventHallService>();
             services.AddScoped<IHallSeatsService, HallSeatsService>();
             services.AddScoped<IBookingMasterService, BookingMasterService>();
             services.AddScoped<IBookingDetailService, BookingDetailService>();
+            services.AddTransient<IAuthService, AuthService>();
 
             services.AddControllers();
 
@@ -105,6 +110,8 @@ namespace TicketBookingAPI
             {
                 c.SwaggerEndpoint("/swagger/v1/swagger.json", "Ticket Booking API V1");
             });
+
+            app.UseGlobalExceptionHandling();
 
             if (env.IsDevelopment())
             {

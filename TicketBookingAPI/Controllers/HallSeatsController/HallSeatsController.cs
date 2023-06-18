@@ -1,6 +1,5 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using TicketBooking.Application.EventHall.Model;
 using TicketBooking.Application.HallSeats.Model;
 using TicketBooking.Application.HallSeats.Service;
 using TicketBooking.CrudController;
