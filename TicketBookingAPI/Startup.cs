@@ -45,12 +45,7 @@ namespace TicketBookingAPI
             services.AddFluentValidationClientsideAdapters();
             services.AddValidatorsFromAssemblyContaining<HallSeatsMap>();
             services.AddAutoMapper(typeof(MapProfile));
-            services.AddScoped<IUserService, UserService>();
-            services.AddScoped<IEventHallService, EventHallService>();
             services.AddScoped<IHallSeatsService, HallSeatsService>();
-            services.AddScoped<IBookingMasterService, BookingMasterService>();
-            services.AddScoped<IBookingDetailService, BookingDetailService>();
-            services.AddTransient<IAuthService, AuthService>();
 
             services.AddControllers();
 

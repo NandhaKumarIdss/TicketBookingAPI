@@ -11,7 +11,9 @@ namespace TicketBooking.CrudController
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class CrudController<TEntity, TModel> : ControllerBase where TEntity : class where TModel: class
+    public class CrudController<TEntity, TModel> : ControllerBase 
+        where TEntity : class
+        where TModel : class
     {
         private readonly IRepository<TEntity, TModel> _repository;
         public CrudController(IRepository<TEntity, TModel> repository)

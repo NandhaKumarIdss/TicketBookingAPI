@@ -8,7 +8,6 @@ namespace TicketBooking.Application.BookingMaster.Service
 {
     public interface IBookingMasterService
     {
-
     }
     public class BookingMasterService: IBookingMasterService
     {
