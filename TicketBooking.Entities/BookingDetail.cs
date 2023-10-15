@@ -9,6 +9,9 @@ namespace TicketBooking.Entities
         public Guid? BookingId { get; set; }
         public Guid? HallSeatId { get; set; }
 
+        public Guid UserId { get; set; }
+        public virtual Users Users { get; set; }
+
         public virtual BookingMaster BookingMasters { get; set; }
         public virtual HallSeats HallSeats { get; set; }
     }

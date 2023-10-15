@@ -17,6 +17,9 @@ namespace TicketBooking.Entities
         public Guid? HallId { get; set; }
         public virtual EventHall EventHall { get; set; }
 
+        public Guid UserId { get; set; }
+        public virtual Users Users { get; set; }
+
         public virtual ICollection<BookingDetail> BookingDetails { get; set; }
     }
 }
