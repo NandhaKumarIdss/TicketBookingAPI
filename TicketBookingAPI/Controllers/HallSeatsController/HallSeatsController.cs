@@ -13,7 +13,7 @@ namespace TicketBooking.Controllers.HallSeatsController
     [ApiController]
     public class HallSeatsController : CrudController<HallSeats, HallSeatsModel>
     {
-        protected readonly IHallSeatsService _service;
+        private readonly IHallSeatsService _service;
         public HallSeatsController(IRepository<HallSeats, HallSeatsModel> repository, IHallSeatsService service) : base(repository)
         {
             _service = service;

@@ -14,6 +14,7 @@ using TicketBooking.Application.BookingDetail.Model;
 using TicketBooking.Application.BookingMaster.Model;
 using TicketBooking.Application.EventHall.Model;
 using TicketBooking.Application.HallSeats.Model;
+using TicketBooking.Application.HallSeats.Service;
 using TicketBooking.Application.Mapping;
 using TicketBooking.Data.Mappings.HallSeats;
 using TicketBooking.Data.TicketBookingDbContext;
@@ -33,29 +34,15 @@ namespace TicketBookingAPI
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            //services.AddAutoMapper();
-
-            //var mappingConfig = new MapperConfiguration(mc =>
-            //{
-            //    mc.AddProfile(new MapProfile());
-            //});
-
-            //IMapper mapper = mappingConfig.CreateMapper();
-            //services.AddSingleton(mapper);
             services.AddFluentValidationAutoValidation();
             services.AddFluentValidationClientsideAdapters();
             services.AddValidatorsFromAssemblyContaining<HallSeatsMap>();
             services.AddAutoMapper(typeof(MapProfile));
-            //services.AddAutoMapper(typeof(HallSeatsModel));
-            //services.AddAutoMapper(typeof(BookingMasterModel));
-            //services.AddAutoMapper(typeof(BookingDetailModel));
+            services.AddScoped<IHallSeatsService, HallSeatsService>();
 
             services.AddControllers();
 
-            //services.AddDbContext<TicketBookingDbContext>(options =>
-            //{
-            //    options.UseNpgsql(Configuration.GetConnectionString("DefaultConnection"));
-            //});
+            
             services.AddDbContext<TicketBookingDbContext>(option => option.UseNpgsql(Configuration["ConnectionStrings:DefaultConnection"]));
 
             services.AddScoped(typeof(IRepository<,>), typeof(Repository<,>));

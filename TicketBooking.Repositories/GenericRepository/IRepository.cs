@@ -6,7 +6,9 @@ using TicketBooking.Entities.BaseEntity;
 
 namespace TicketBooking.Repositories.GenericRepository
 {
-    public interface IRepository<TEntity, TModel> where TEntity : class
+    public interface IRepository<TEntity, TModel> 
+        where TEntity : class
+        where TModel : class
     {
         Task<TModel> GetById(Guid id);
         Task Create(TModel entity);
